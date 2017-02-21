@@ -25,8 +25,7 @@ Parses simple arythmetic formula's containing variables.
 Can then be used to compute values resolving the variables from a context
 object.
 
-
-.. doctest::
+.. code-block:: python
 
     >>> from argparse import Namespace as KeyedObject
     >>> from formulaparser import Formula
