@@ -1,4 +1,5 @@
 from __future__ import division
+from decimal import Decimal
 import math
 import operator
 from collections import Iterable
@@ -54,6 +55,12 @@ class FloatTerm(Term):
 
     def calculate_value(self):
         return float(self.parseresult.float)
+
+
+class DecimalTerm(Term):
+
+    def calculate_value(self):
+        return Decimal(self.parseresult.decimal)
 
 
 class VariableTerm(Term):

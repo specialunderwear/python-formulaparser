@@ -1,4 +1,4 @@
-from formulaparser.parser import formulaparser
+from formulaparser.parser import make_parser, floatclause, decimalclause
 
 
 class Formula(object):
@@ -37,9 +37,11 @@ class Formula(object):
     >>> Formula("(four * 6) - nextlevel.ten + 7 - 4 + 3").calculate_value(context)
     20
     """
+    formulaparser = make_parser(floatclause)
+
     def __init__(self, formula):
         self.formula = formula
-        self._parsed_formula = formulaparser.parseString(formula)
+        self._parsed_formula = self.formulaparser.parseString(formula, parseAll=True)
 
     def __repr__(self):
         return "<Formula %s>" % self.formula
@@ -48,3 +50,7 @@ class Formula(object):
         expression = self._parsed_formula.expression
         bound_expression = expression.resolve(context)
         return bound_expression.calculate_value()
+
+
+class DecimalFormula(Formula):
+    formulaparser = make_parser(decimalclause)
