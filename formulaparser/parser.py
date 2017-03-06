@@ -37,11 +37,11 @@ decimalclause = (decimal | variable)
 
 def make_parser(clause):
     expression = operatorPrecedence( clause,
-    [(factop, 1, opAssoc.LEFT),
-     (expop, 2, opAssoc.RIGHT),
-     (signop, 1, opAssoc.RIGHT),
-     (multop, 2, opAssoc.LEFT),
-     (plusop, 2, opAssoc.LEFT),]
+    [(factop, 1, opAssoc.LEFT, Expression),
+     (expop, 2, opAssoc.RIGHT, Expression),
+     (signop, 1, opAssoc.RIGHT, Expression),
+     (multop, 2, opAssoc.LEFT, Expression),
+     (plusop, 2, opAssoc.LEFT, Expression),]
     )
 
     return  expression.setParseAction(Expression).setResultsName('expression')

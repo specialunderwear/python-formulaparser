@@ -122,13 +122,15 @@ def combine_results(first, second):
 
 
 class Expression(Term):
+    def __repr__(self):
+        return "<Expression %s>" % self.parseresult[0]
 
     def calculate_value(self):
         expression = self.parseresult[0]
         if isinstance(expression, Iterable):
             result = reduce(combine_results, self.parseresult[0], Bottom(self.context))
         else:
-            result = expression
+            result = expression.resolve(self.context)
 
         return result.calculate_value()
 
