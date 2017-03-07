@@ -22,7 +22,7 @@ from formulaparser.resolve import (
 integer = Word(nums).setParseAction(IntegerTerm).setResultsName('integer')
 number = Regex(r"\d+.\d+").setParseAction(FloatTerm).setResultsName('float')
 decimal = Regex(r"\d+(.\d+)?").setParseAction(DecimalTerm).setResultsName('decimal')
-variable = Word(alphas + '.').setParseAction(VariableTerm).setResultsName('variable')
+variable = Word(alphas + '._').setParseAction(VariableTerm).setResultsName('variable')
 
 factop = Literal('!').setParseAction(UnaryOperator).setResultsName('operator')
 signop = oneOf('+ -').setParseAction(UnaryOperator).setResultsName('operator')
